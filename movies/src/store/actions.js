@@ -1,5 +1,8 @@
 export default {
-    setInputName(context, payload) {
-        context.commit('setInputName', payload)
+    setInputMovie(context, payload) {
+        context.commit('setInputMovie', payload)
+    },
+    setListMovies(context, payload) {
+        context.commit('setListMovies', payload)
     }
 }

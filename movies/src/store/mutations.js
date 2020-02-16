@@ -1,5 +1,9 @@
 export default {
-    setInputName(state, payload) {
-        state.inputName = payload
+    setInputMovie(state, payload) {
+        state.inputMovie = payload
+    },
+    setListMovies(state, payload) {
+        state.listMovies = payload
     }
+
 }

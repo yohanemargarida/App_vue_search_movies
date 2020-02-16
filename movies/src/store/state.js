@@ -1,4 +1,4 @@
 export default {
-    inputName: '',
-    searched: false
+    inputMovie: '',
+    listMovies: ''
 };
