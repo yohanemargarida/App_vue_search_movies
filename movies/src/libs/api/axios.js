@@ -1,7 +1,10 @@
 import axios from 'axios'
+import Vue from 'vue'
 
-const axiosURL = axios.create({
-    baseURL: 'https://api.themoviedb.org/3/search/movie?api_key=69f81ecbaec99746aae10a311d0878e8&query='
+axios.defaults.baseURL = 'https://api.themoviedb.org/3/search/movie?api_key=69f81ecbaec99746aae10a311d0878e8&'
+
+Vue.use({
+    install(Vue) {
+        Vue.prototype.$http = axios
+    }
 })
-
-export default axiosURL

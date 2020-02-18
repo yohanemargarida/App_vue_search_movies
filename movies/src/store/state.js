@@ -1,4 +1,4 @@
 export default {
     inputMovie: '',
-    listMovies: ''
+    listMovies: []
 };

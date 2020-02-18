@@ -1,9 +1,17 @@
 <template>
   <div>
     <h1>Search</h1>
-    <input type="text" v-model="inputMovie" @keyup="getResult(inputMovie)" />
-    <div v-for="movie in listMovies" :key="movie.id">
-      <p>{{movie.title}}</p>
+    <input type="text" v-model="inputMovie" @keyup.enter="getResult"/>
+
+    <div v-if="searched && listMovies.length">
+      <div v-for="movie in listMovies" :key="movie.id">
+        <router-link :to="{ name: 'detalhes', query: {id: movie.id} }">
+          <p>Film: {{movie.title}} - popularity: {{movie.popularity}}</p>
+        </router-link>
+      </div>
+    </div>
+    <div v-else-if="searched && !listMovies.length">
+      <p>Nenhum filme encontrado para a busca: {{ inputMovie }}</p>
     </div>
   </div>
 </template>
@@ -11,6 +19,11 @@
 <script>
 import axios from "axios";
 export default {
+  data() {
+    return {
+      searched: false
+    };
+  },
   computed: {
     inputMovie: {
       get() {
@@ -32,12 +45,12 @@ export default {
   methods: {
     getResult() {
       axios
-        .get(
-          "https://api.themoviedb.org/3/search/movie?api_key=69f81ecbaec99746aae10a311d0878e8&query=" +
+        .get("https://api.themoviedb.org/3/search/movie?api_key=69f81ecbaec99746aae10a311d0878e8&query=" +
             this.inputMovie
         )
         .then(response => {
           this.listMovies = response.data.results;
+          this.searched = true;
         })
         .catch(error => console.log(error));
       console.log(this.listMovies);
