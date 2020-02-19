@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import axios from "axios";
+
 export default {
   data() {
     return {
@@ -44,8 +44,8 @@ export default {
   },
   methods: {
     getResult() {
-      axios
-        .get("https://api.themoviedb.org/3/search/movie?api_key=69f81ecbaec99746aae10a311d0878e8&query=" +
+      this.$http
+        .get("search/movie?api_key=69f81ecbaec99746aae10a311d0878e8&query=" +
             this.inputMovie
         )
         .then(response => {
