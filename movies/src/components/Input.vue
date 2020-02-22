@@ -34,7 +34,6 @@ export default {};
   color: inherit;
   display: flex;
   margin-bottom: 8px;
-  min-height: inherit;
   position: relative;
   width: 100%;
 }

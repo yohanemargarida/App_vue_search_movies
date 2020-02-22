@@ -1,13 +1,18 @@
 <template>
   <div>
     <h1>Search</h1>
-    <Input />
-    <input type="text" v-model="inputMovie" @keyup.enter="getResult"/>
+
+    <input
+      type="text"
+      placeholder="digite o nome do filme"
+      v-model="inputMovie"
+      @keyup.enter="getResult"
+    />
 
     <div v-if="searched && listMovies.length">
       <div v-for="movie in listMovies" :key="movie.id">
         <router-link :to="{ name: 'detalhes', query: {id: movie.id} }">
-          <p>Film: {{movie.title}} - popularity: {{movie.popularity}}</p>
+          <a class="film"><span>Film: </span>{{movie.title}} - <span>popularity: </span>{{movie.popularity}}</a>
         </router-link>
       </div>
     </div>
@@ -18,11 +23,7 @@
 </template>
 
 <script>
-import Input from "../components/Input"
 export default {
-  components: {
-    Input,
-  },
   data() {
     return {
       searched: false
@@ -49,7 +50,8 @@ export default {
   methods: {
     getResult() {
       this.$http
-        .get("search/movie?api_key=69f81ecbaec99746aae10a311d0878e8&query=" +
+        .get(
+          "search/movie?api_key=69f81ecbaec99746aae10a311d0878e8&query=" +
             this.inputMovie
         )
         .then(response => {
@@ -64,4 +66,45 @@ export default {
 </script>
 
 <style scoped>
+input {
+  display: block;
+  width: 300px;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #555;
+  border: 1px solid #f05e5c;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+input:focus{
+  box-shadow: 0 0 0 0;
+    
+    outline: 0;
+}
+h1 {
+  font-size: 42px;
+  text-align: center;
+  color: #f05e5c;
+}
+div a{
+  line-height: 1.4;
+  font-size: 18px;
+  
+}
+div a:link {
+  text-decoration: none;
+  color: #323232;
+}
+a:visited {
+   color: #7f7f7f;
+}
+a:hover {
+  text-decoration: underline;
+   color: #f05e5c;
+}
+span {
+  font-weight: bold;
+}
 </style>

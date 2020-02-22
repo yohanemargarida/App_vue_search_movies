@@ -8,7 +8,7 @@
           <img :src="'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path" />
         </div>
         <div class="genre text">
-          <h2>Gener:</h2>
+          <h2>Genre:</h2>
           <p v-for="genre in listGenre" :key="genre.id">{{ genre, }}</p>
         </div>
         <div class="content">
@@ -47,6 +47,7 @@ export default {
     }
   },
   methods: {
+  
     getMovie(id) {
       this.loading = true;
       this.$http
@@ -76,12 +77,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Archivo&display=swap");
-$font-stack: "Archivo";
 
 div {
   display: block;
-  font-family: $font-stack;
+  
 }
 
 .figure {
