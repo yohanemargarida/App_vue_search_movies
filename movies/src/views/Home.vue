@@ -1,40 +1,32 @@
 <template>
-  <div class>
-    <div class="home-page container center">
-      <Search class="search-box" />
+  <div>
+    <Navbar />
+    <div class="background">
+      <Search class="search" />
     </div>
   </div>
 </template>
 
 <script>
 import Search from "../components/Search";
-
+import Navbar from "../layout/Navbar"
 
 export default {
   components: {
-    Search
+    Search, 
+    Navbar
   }
 };
 </script>
 
 <style lang="scss">
-.home-page {
-  background: #fff;
-}
-.search-box {
-  text-align: center;
-  
-}
-.container {
-  max-width: 1600px;
-  height: 1200px;
-  margin: 0 auto;
+.background {
+  width: 100%;
+  height: 650px;
   display: flex;
-}
-.center {
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  height: 800px;
-
 }
+
 </style>

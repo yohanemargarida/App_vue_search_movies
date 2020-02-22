@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Search</h1>
+    <Input />
     <input type="text" v-model="inputMovie" @keyup.enter="getResult"/>
 
     <div v-if="searched && listMovies.length">
@@ -17,8 +18,11 @@
 </template>
 
 <script>
-
+import Input from "../components/Input"
 export default {
+  components: {
+    Input,
+  },
   data() {
     return {
       searched: false
