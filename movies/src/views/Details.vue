@@ -9,6 +9,9 @@
         <div v-if="movie.backdrop_path" class="figure">
           <img :src="'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path" />
         </div>
+        <div v-else-if="!movie.backdrop_path">
+          <img :src="'https://fakeimg.pl/500x281/d3d3d3,128/333333,255/?text=こんにちは&font=noto'" />
+        </div>
         <div class="genre text">
           <h2>Genre:</h2>
           <p v-for="genre in listGenre" :key="genre.id">{{ genre, }}</p>
