@@ -1,17 +1,19 @@
 <template>
   <div>
+    <h1>Search Movie</h1>
     <div class="input">
-      <h1>Search</h1>
-
       <input
         type="text"
         placeholder="digite o nome do filme"
         v-model="inputMovie"
         @keyup.enter="getResult"
       />
+      <button @click="getResult">
+        <img src="../assets/img/procurar.svg" width="50%">
+      </button>
     </div>
 
-    <div v-if="searched && listMovies.length">
+    <div v-if="searched && listMovies.length" class="result-movies">
       <div v-for="movie in listMovies" :key="movie.id">
         <router-link :to="{ name: 'detalhes', query: {id: movie.id} }">
           <a class="film">
@@ -75,24 +77,36 @@ export default {
 </script>
 
 <style scoped>
-
+button {
+  width: 60px;
+  height: 48px;
+  background: #f05e5c;
+  border: none;
+  color: #fff;
+  margin-left: 2px;
+}
+button img{
+  filter: invert(100%);
+  padding: 11px;
+}
 .input {
-  margin: 0 auto;
+  margin: 14px;
+  height: 50px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+button,
+input {
+  border-radius: 4px;
+  font-size: 16px;
 }
 input {
-  display: block;
   width: 300px;
   height: 34px;
   padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.4;
   color: #555;
   border: 1px solid #f05e5c;
-  border-radius: 4px;
-  margin-bottom: 10px;
 }
 input:focus {
   box-shadow: 0 0 0 0;
