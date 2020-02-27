@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <section>
     <h1>Search Movie</h1>
     <div class="input">
       <input
         type="text"
-        placeholder="digite o nome do filme"
+        placeholder="enter the name of movie"
         v-model="inputMovie"
         @keyup.enter="getResult"
       />
-      <button @click="getResult">
-        <img src="../assets/img/procurar.svg" width="50%">
+      <button :disabled="!inputMovie" @click="getResult">
+        <img src="../assets/img/procurar.svg" width="50%" />
       </button>
     </div>
 
@@ -28,7 +28,7 @@
     <div v-else-if="searched && !listMovies.length">
       <p>Nenhum filme encontrado para a busca: {{ inputMovie }}</p>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -72,25 +72,36 @@ export default {
         .catch(error => console.log(error));
       console.log(this.listMovies);
     }
+  },
+  watch: {
+    inputMovie() {
+      this.searched = false;
+    }
   }
 };
 </script>
 
 <style scoped>
+section{
+  height: 70%;
+  width: 100%;
+  padding-top: 2%;
+  display: flex;
+  flex-direction: column;
+}
 button {
-  width: 60px;
+  width: 50px;
   height: 48px;
   background: #f05e5c;
   border: none;
   color: #fff;
   margin-left: 2px;
 }
-button img{
+button img {
   filter: invert(100%);
-  padding: 11px;
 }
 .input {
-  margin: 14px;
+  margin: 24px;
   height: 50px;
   display: flex;
   flex-direction: row;
@@ -108,14 +119,18 @@ input {
   color: #555;
   border: 1px solid #f05e5c;
 }
-input:focus {
+input:focus,
+button:focus {
   box-shadow: 0 0 0 0;
   outline: 0;
 }
 h1 {
   font-size: 42px;
-  text-align: center;
+  margin: 0 auto;
   color: hsl(1, 83%, 65%);
+}
+div{
+  
 }
 div a {
   line-height: 1.4;
@@ -134,5 +149,10 @@ a:hover {
 }
 span {
   font-weight: bold;
+}
+.result-movies{
+  height: 50%;
+  margin: 0 auto;
+  line-height: 1.2;
 }
 </style>

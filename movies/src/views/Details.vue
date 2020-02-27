@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div v-if="loading" class="loading">Aguardando</div>
+    <div v-if="loader" class="loader-box">
+      <div class="loader"></div>
+    </div>
     <div v-if="movie">
       <Navbar />
       <section class="background">
@@ -33,7 +35,7 @@ export default {
   },
   data() {
     return {
-      loading: false,
+      loader: false,
       movie: "",
       errorMessage: "Não foi possível conectar na API"
     };
@@ -47,9 +49,8 @@ export default {
     }
   },
   methods: {
-  
     getMovie(id) {
-      this.loading = true;
+      this.loader = true;
       this.$http
         .get("movie/" + id + "?api_key=69f81ecbaec99746aae10a311d0878e8")
         .then(response => {
@@ -62,7 +63,7 @@ export default {
           }
         })
         .then(() => {
-          this.loading = false;
+          this.loader = false;
         });
     }
   },
@@ -77,54 +78,66 @@ export default {
 </script>
 
 <style lang="scss">
-
 div {
   display: block;
-  
 }
-
 .figure {
   justify-content: center;
   display: flex;
 }
-
 .figure img {
   box-shadow: 0px 0px 37px -8px rgba(0, 0, 0, 0.75);
 }
-
 .content {
   display: block;
   margin-top: 0;
 }
-
 .text {
   max-width: 800px;
   margin-left: 50px;
 }
-
 .title {
   font-size: 35px;
   margin-top: 0;
   padding-top: 0;
   line-height: 1.2;
 }
-
 .sinopsys {
   font-size: 22px;
   line-height: 1.4;
 }
-
 .genre {
   line-height: 1.5;
 }
-
 .genre h2 {
   color: #f05e5c;
 }
-
 .genre p {
   font-size: 18px;
   font-weight: bold;
   line-height: 0.5;
+}
+.loader {
+  border: 16px solid #f05e5c; /* Light grey */
+  border-top: 16px solid #f3f3f3; /* Blue */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+.loader-box {
+  width: 100%;
+  height: 850px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
