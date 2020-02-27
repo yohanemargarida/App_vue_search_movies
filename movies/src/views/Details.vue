@@ -85,6 +85,7 @@ div {
 
 .figure {
   justify-content: center;
+  display: flex;
 }
 
 .figure img {
@@ -105,7 +106,7 @@ div {
   font-size: 35px;
   margin-top: 0;
   padding-top: 0;
-  line-height: 0.5;
+  line-height: 1.2;
 }
 
 .sinopsys {

@@ -1,18 +1,25 @@
 <template>
   <div>
-    <h1>Search</h1>
+    <div class="input">
+      <h1>Search</h1>
 
-    <input
-      type="text"
-      placeholder="digite o nome do filme"
-      v-model="inputMovie"
-      @keyup.enter="getResult"
-    />
+      <input
+        type="text"
+        placeholder="digite o nome do filme"
+        v-model="inputMovie"
+        @keyup.enter="getResult"
+      />
+    </div>
 
     <div v-if="searched && listMovies.length">
       <div v-for="movie in listMovies" :key="movie.id">
         <router-link :to="{ name: 'detalhes', query: {id: movie.id} }">
-          <a class="film"><span>Film: </span>{{movie.title}} - <span>popularity: </span>{{movie.popularity}}</a>
+          <a class="film">
+            <span>Film:</span>
+            {{movie.title}} -
+            <span>popularity:</span>
+            {{movie.popularity}}
+          </a>
         </router-link>
       </div>
     </div>
@@ -26,7 +33,8 @@
 export default {
   data() {
     return {
-      searched: false
+      searched: false,
+      movies: ""
     };
   },
   computed: {
@@ -57,6 +65,7 @@ export default {
         .then(response => {
           this.listMovies = response.data.results;
           this.searched = true;
+          this.movies = response.data.results;
         })
         .catch(error => console.log(error));
       console.log(this.listMovies);
@@ -66,6 +75,13 @@ export default {
 </script>
 
 <style scoped>
+
+.input {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 input {
   display: block;
   width: 300px;
@@ -78,31 +94,29 @@ input {
   border-radius: 4px;
   margin-bottom: 10px;
 }
-input:focus{
+input:focus {
   box-shadow: 0 0 0 0;
-    
-    outline: 0;
+  outline: 0;
 }
 h1 {
   font-size: 42px;
   text-align: center;
-  color: #f05e5c;
+  color: hsl(1, 83%, 65%);
 }
-div a{
+div a {
   line-height: 1.4;
   font-size: 18px;
-  
 }
 div a:link {
   text-decoration: none;
   color: #323232;
 }
 a:visited {
-   color: #7f7f7f;
+  color: #7f7f7f;
 }
 a:hover {
   text-decoration: underline;
-   color: #f05e5c;
+  color: #f05e5c;
 }
 span {
   font-weight: bold;
